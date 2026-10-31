@@ -2,7 +2,11 @@
 
 HeThongBenhVien::HeThongBenhVien(int sc) {
     soPhong = 0;
-    sucChua = sc > 0 && sc <= MAX_HANG_DOI ? sc : MAX_HANG_DOI;
+    if (sc > 0 && sc <= MAX_HANG_DOI) {
+        sucChua = sc;
+    } else {
+        sucChua = MAX_HANG_DOI;
+    }
     soLuong = 0;
     sttTuDong = 0;
 }
@@ -60,8 +64,12 @@ bool HeThongBenhVien::tiepNhanVaPhanLuong(int ma, string ten, string tenPhong, i
     bn.phongKham = tenPhong;
     bn.doUuTien = doUuTien;
     bn.soThuTu = sttTuDong + 1;
-    bool daThem = doUuTien == 1 ? phong[viTri].hangThuong.them(bn)
-                                : phong[viTri].hangCapCuu.them(bn);
+    bool daThem;
+    if (doUuTien == 1) {
+        daThem = phong[viTri].hangThuong.them(bn);
+    } else {
+        daThem = phong[viTri].hangCapCuu.them(bn);
+    }
     if (!daThem) return false;
     sttTuDong++;
     soLuong++;
@@ -138,7 +146,12 @@ int HeThongBenhVien::thoiGianChoDuKien(int maBN) {
     int viTri;
     bool capCuu;
     if (!timBenhNhan(maBN, bn, viTri, capCuu)) return -1;
-    int truoc = capCuu ? 0 : phong[viTri].hangCapCuu.kichThuoc();
+    int truoc;
+    if (capCuu) {
+        truoc = 0;
+    } else {
+        truoc = phong[viTri].hangCapCuu.kichThuoc();
+    }
     if (capCuu) {
         for (int i = 0; i < phong[viTri].hangCapCuu.kichThuoc(); i++) {
             phong[viTri].hangCapCuu.xemTaiViTri(i, dangXet);
@@ -186,7 +199,12 @@ void HeThongBenhVien::hienThiBangDienTu() {
 
 void HeThongBenhVien::thongKePhongKham(string tenPhong) {
     int viTri = timPhong(tenPhong);
-    int dem = viTri < 0 ? 0 : phong[viTri].hangCapCuu.kichThuoc() + phong[viTri].hangThuong.kichThuoc();
+    int dem;
+    if (viTri < 0) {
+        dem = 0;
+    } else {
+        dem = phong[viTri].hangCapCuu.kichThuoc() + phong[viTri].hangThuong.kichThuoc();
+    }
     cout << "[THONG KE] Phong " << tenPhong << " dang co " << dem << " BN xep hang.\n";
 }
 
