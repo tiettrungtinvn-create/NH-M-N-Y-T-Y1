@@ -1,7 +1,7 @@
 #ifndef CAU_TRUC_DU_LIEU_H
 #define CAU_TRUC_DU_LIEU_H
 
-#include "HeThongBenhVien.h"
+#include "../code/HeThongBenhVien.h"
 
 // shortcut: Mỗi hàng chứa tối đa 100 bệnh nhân; tăng giới hạn khi cần nhiều hơn.
 const int MAX_HANG_DOI = 100;
@@ -31,11 +31,19 @@ public:
 
 class PriorityQueue {
 private:
-    BenhNhan danhSach[MAX_HANG_DOI];
+    struct Node {
+        BenhNhan data;
+        Node* next;
+    };
+    Node* head;
     int soLuong;
+
+    PriorityQueue(const PriorityQueue&) = delete;
+    PriorityQueue& operator=(const PriorityQueue&) = delete;
 
 public:
     PriorityQueue();
+    ~PriorityQueue();
     bool them(BenhNhan bn);
     bool lay(BenhNhan &bn);
     bool xemDau(BenhNhan &bn);
@@ -45,12 +53,21 @@ public:
 
 class Deque {
 private:
-    BenhNhan danhSach[MAX_HANG_DOI];
-    int dau;
+    struct Node {
+        BenhNhan data;
+        Node* next;
+        Node* prev;
+    };
+    Node* head;
+    Node* tail;
     int soLuong;
+
+    Deque(const Deque&) = delete;
+    Deque& operator=(const Deque&) = delete;
 
 public:
     Deque();
+    ~Deque();
     bool themDau(BenhNhan bn);
     bool themCuoi(BenhNhan bn);
     bool layDau(BenhNhan &bn);

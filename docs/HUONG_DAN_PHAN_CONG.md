@@ -1,6 +1,6 @@
 # Hướng dẫn làm việc theo 25 task Jira
 
-> Tài liệu này được chuyển từ dự án cũ để tham khảo. Các đường dẫn `include/`, `examples/` và hướng dẫn dùng `vector` trong nội dung dưới đây chưa được cập nhật cho repo mới. Cấu trúc dữ liệu cơ bản đang dùng nằm ở `code/CauTrucDuLieu.h` và `code/CauTrucDuLieu.cpp`; xem README tại thư mục gốc để chạy kiểm thử.
+> Tài liệu này được chuyển từ dự án cũ để tham khảo. Phần lớn các đường dẫn và hướng dẫn dùng `vector` bên dưới chưa được cập nhật cho repo mới. Cấu trúc dữ liệu hiện tại nằm ở `include/CauTrucDuLieu.h` và `code/CauTrucDuLieu.cpp`; xem README tại thư mục gốc để chạy kiểm thử.
 
 Bản console ba file nằm trong `examples/hang_doi_co_ban/`. Head khai báo, Body cài đặt, Main nhập/xuất và gọi hàm. Website tiếp tục dùng các file trong `include/`, `src/`, `web/`.
 

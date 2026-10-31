@@ -1,4 +1,4 @@
-#include "../code/CauTrucDuLieu.h"
+#include "../include/CauTrucDuLieu.h"
 #include <iostream>
 using namespace std;
 
@@ -30,9 +30,9 @@ int main() {
         if (!kiemTra(thuong.lay(bn) && bn.maBenhNhan == i, "Queue FIFO")) return 1;
     }
     for (int i = 101; i <= 180; i++)
-        if (!kiemTra(thuong.them(taoBenhNhan(i, 1, i)), "Queue quay vong")) return 1;
+        if (!kiemTra(thuong.them(taoBenhNhan(i, 1, i)), "Queue them sau khi lay bot")) return 1;
     for (int i = 81; i <= 180; i++) {
-        if (!kiemTra(thuong.lay(bn) && bn.maBenhNhan == i, "Queue sau quay vong")) return 1;
+        if (!kiemTra(thuong.lay(bn) && bn.maBenhNhan == i, "Queue FIFO sau khi lay bot")) return 1;
     }
     if (!kiemTra(thuong.laRong(), "Queue lay het")) return 1;
     if (!kiemTra(thuong.them(taoBenhNhan(181, 1, 181)) &&
@@ -68,11 +68,14 @@ int main() {
         if (!kiemTra(haiDau.themCuoi(taoBenhNhan(i, 1, i)), "Deque day")) return 1;
     if (!kiemTra(!haiDau.themDau(taoBenhNhan(101, 1, 101)), "Deque chan tran")) return 1;
     for (int i = 1; i <= 80; i++)
-        if (!kiemTra(haiDau.layDau(bn) && bn.maBenhNhan == i, "Deque quay vong")) return 1;
+        if (!kiemTra(haiDau.layDau(bn) && bn.maBenhNhan == i, "Deque lay bot")) return 1;
     for (int i = 101; i <= 180; i++)
-        if (!kiemTra(haiDau.themCuoi(taoBenhNhan(i, 1, i)), "Deque them sau quay vong")) return 1;
+        if (!kiemTra(haiDau.themCuoi(taoBenhNhan(i, 1, i)), "Deque them sau khi lay bot")) return 1;
     for (int i = 81; i <= 180; i++)
-        if (!kiemTra(haiDau.layDau(bn) && bn.maBenhNhan == i, "Deque lay sau quay vong")) return 1;
+        if (!kiemTra(haiDau.layDau(bn) && bn.maBenhNhan == i, "Deque lay sau khi them")) return 1;
+    if (!kiemTra(haiDau.themDau(taoBenhNhan(181, 1, 181)) &&
+                 haiDau.layCuoi(bn) && bn.maBenhNhan == 181 && haiDau.laRong(),
+                 "Deque them lai sau khi rong")) return 1;
 
     cout << "Queue, Priority Queue, Deque: OK\n";
     return 0;
