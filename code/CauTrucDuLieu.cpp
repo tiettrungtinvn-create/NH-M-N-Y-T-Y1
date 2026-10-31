@@ -1,22 +1,22 @@
 #include "../include/CauTrucDuLieu.h"
 
-Queue::Queue() {
+HangDoi::HangDoi() {
     head = NULL;
     tail = NULL;
     soLuong = 0;
 }
 
-Queue::~Queue() {
+HangDoi::~HangDoi() {
     while (head != NULL) {
-        Node* cu = head;
+        Nut* cu = head;
         head = head->next;
         delete cu;
     }
 }
 
-bool Queue::them(BenhNhan bn) {
+bool HangDoi::them(BenhNhan bn) {
     if (soLuong == MAX_HANG_DOI) return false;
-    Node* moi = new Node;
+    Nut* moi = new Nut;
     moi->data = bn;
     moi->next = NULL;
     if (head == NULL) head = moi;
@@ -26,9 +26,9 @@ bool Queue::them(BenhNhan bn) {
     return true;
 }
 
-bool Queue::lay(BenhNhan &bn) {
+bool HangDoi::lay(BenhNhan &bn) {
     if (laRong()) return false;
-    Node* cu = head;
+    Nut* cu = head;
     bn = cu->data;
     head = head->next;
     delete cu;
@@ -37,38 +37,38 @@ bool Queue::lay(BenhNhan &bn) {
     return true;
 }
 
-bool Queue::xemDau(BenhNhan &bn) {
+bool HangDoi::xemDau(BenhNhan &bn) {
     if (laRong()) return false;
     bn = head->data;
     return true;
 }
 
-bool Queue::laRong() { return soLuong == 0; }
-int Queue::kichThuoc() { return soLuong; }
+bool HangDoi::laRong() { return soLuong == 0; }
+int HangDoi::kichThuoc() { return soLuong; }
 
-PriorityQueue::PriorityQueue() {
+HangDoiUuTien::HangDoiUuTien() {
     head = NULL;
     soLuong = 0;
 }
 
-PriorityQueue::~PriorityQueue() {
+HangDoiUuTien::~HangDoiUuTien() {
     while (head != NULL) {
-        Node* cu = head;
+        Nut* cu = head;
         head = head->next;
         delete cu;
     }
 }
 
-bool PriorityQueue::them(BenhNhan bn) {
+bool HangDoiUuTien::them(BenhNhan bn) {
     if (soLuong == MAX_HANG_DOI) return false;
-    Node* moi = new Node;
+    Nut* moi = new Nut;
     moi->data = bn;
     moi->next = NULL;
     if (head == NULL || head->data < bn) {
         moi->next = head;
         head = moi;
     } else {
-        Node* hienTai = head;
+        Nut* hienTai = head;
         while (hienTai->next != NULL && !(hienTai->next->data < bn))
             hienTai = hienTai->next;
         moi->next = hienTai->next;
@@ -78,9 +78,9 @@ bool PriorityQueue::them(BenhNhan bn) {
     return true;
 }
 
-bool PriorityQueue::lay(BenhNhan &bn) {
+bool HangDoiUuTien::lay(BenhNhan &bn) {
     if (laRong()) return false;
-    Node* cu = head;
+    Nut* cu = head;
     bn = cu->data;
     head = head->next;
     delete cu;
@@ -88,32 +88,32 @@ bool PriorityQueue::lay(BenhNhan &bn) {
     return true;
 }
 
-bool PriorityQueue::xemDau(BenhNhan &bn) {
+bool HangDoiUuTien::xemDau(BenhNhan &bn) {
     if (laRong()) return false;
     bn = head->data;
     return true;
 }
 
-bool PriorityQueue::laRong() { return soLuong == 0; }
-int PriorityQueue::kichThuoc() { return soLuong; }
+bool HangDoiUuTien::laRong() { return soLuong == 0; }
+int HangDoiUuTien::kichThuoc() { return soLuong; }
 
-Deque::Deque() {
+HangDoiHaiDau::HangDoiHaiDau() {
     head = NULL;
     tail = NULL;
     soLuong = 0;
 }
 
-Deque::~Deque() {
+HangDoiHaiDau::~HangDoiHaiDau() {
     while (head != NULL) {
-        Node* cu = head;
+        Nut* cu = head;
         head = head->next;
         delete cu;
     }
 }
 
-bool Deque::themDau(BenhNhan bn) {
+bool HangDoiHaiDau::themDau(BenhNhan bn) {
     if (soLuong == MAX_HANG_DOI) return false;
-    Node* moi = new Node;
+    Nut* moi = new Nut;
     moi->data = bn;
     moi->prev = NULL;
     moi->next = head;
@@ -124,9 +124,9 @@ bool Deque::themDau(BenhNhan bn) {
     return true;
 }
 
-bool Deque::themCuoi(BenhNhan bn) {
+bool HangDoiHaiDau::themCuoi(BenhNhan bn) {
     if (soLuong == MAX_HANG_DOI) return false;
-    Node* moi = new Node;
+    Nut* moi = new Nut;
     moi->data = bn;
     moi->next = NULL;
     moi->prev = tail;
@@ -137,9 +137,9 @@ bool Deque::themCuoi(BenhNhan bn) {
     return true;
 }
 
-bool Deque::layDau(BenhNhan &bn) {
+bool HangDoiHaiDau::layDau(BenhNhan &bn) {
     if (laRong()) return false;
-    Node* cu = head;
+    Nut* cu = head;
     bn = cu->data;
     head = head->next;
     if (head == NULL) tail = NULL;
@@ -149,9 +149,9 @@ bool Deque::layDau(BenhNhan &bn) {
     return true;
 }
 
-bool Deque::layCuoi(BenhNhan &bn) {
+bool HangDoiHaiDau::layCuoi(BenhNhan &bn) {
     if (laRong()) return false;
-    Node* cu = tail;
+    Nut* cu = tail;
     bn = cu->data;
     tail = tail->prev;
     if (tail == NULL) head = NULL;
@@ -161,5 +161,5 @@ bool Deque::layCuoi(BenhNhan &bn) {
     return true;
 }
 
-bool Deque::laRong() { return soLuong == 0; }
-int Deque::kichThuoc() { return soLuong; }
+bool HangDoiHaiDau::laRong() { return soLuong == 0; }
+int HangDoiHaiDau::kichThuoc() { return soLuong; }

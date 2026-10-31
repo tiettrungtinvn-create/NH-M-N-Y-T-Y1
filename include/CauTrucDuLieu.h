@@ -6,22 +6,22 @@
 // shortcut: Mỗi hàng chứa tối đa 100 bệnh nhân; tăng giới hạn khi cần nhiều hơn.
 const int MAX_HANG_DOI = 100;
 
-class Queue {
+class HangDoi {
 private:
-    struct Node {
+    struct Nut {
         BenhNhan data;
-        Node* next;
+        Nut* next;
     };
-    Node* head;
-    Node* tail;
+    Nut* head;
+    Nut* tail;
     int soLuong;
 
-    Queue(const Queue&) = delete;
-    Queue& operator=(const Queue&) = delete;
+    HangDoi(const HangDoi&) = delete;
+    HangDoi& operator=(const HangDoi&) = delete;
 
 public:
-    Queue();
-    ~Queue();
+    HangDoi();
+    ~HangDoi();
     bool them(BenhNhan bn);
     bool lay(BenhNhan &bn);
     bool xemDau(BenhNhan &bn);
@@ -29,21 +29,21 @@ public:
     int kichThuoc();
 };
 
-class PriorityQueue {
+class HangDoiUuTien {
 private:
-    struct Node {
+    struct Nut {
         BenhNhan data;
-        Node* next;
+        Nut* next;
     };
-    Node* head;
+    Nut* head;
     int soLuong;
 
-    PriorityQueue(const PriorityQueue&) = delete;
-    PriorityQueue& operator=(const PriorityQueue&) = delete;
+    HangDoiUuTien(const HangDoiUuTien&) = delete;
+    HangDoiUuTien& operator=(const HangDoiUuTien&) = delete;
 
 public:
-    PriorityQueue();
-    ~PriorityQueue();
+    HangDoiUuTien();
+    ~HangDoiUuTien();
     bool them(BenhNhan bn);
     bool lay(BenhNhan &bn);
     bool xemDau(BenhNhan &bn);
@@ -51,23 +51,23 @@ public:
     int kichThuoc();
 };
 
-class Deque {
+class HangDoiHaiDau {
 private:
-    struct Node {
+    struct Nut {
         BenhNhan data;
-        Node* next;
-        Node* prev;
+        Nut* next;
+        Nut* prev;
     };
-    Node* head;
-    Node* tail;
+    Nut* head;
+    Nut* tail;
     int soLuong;
 
-    Deque(const Deque&) = delete;
-    Deque& operator=(const Deque&) = delete;
+    HangDoiHaiDau(const HangDoiHaiDau&) = delete;
+    HangDoiHaiDau& operator=(const HangDoiHaiDau&) = delete;
 
 public:
-    Deque();
-    ~Deque();
+    HangDoiHaiDau();
+    ~HangDoiHaiDau();
     bool themDau(BenhNhan bn);
     bool themCuoi(BenhNhan bn);
     bool layDau(BenhNhan &bn);
