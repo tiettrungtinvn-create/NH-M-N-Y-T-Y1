@@ -9,7 +9,13 @@ struct BenhNhan {
     string phongKham;
     int doUuTien;
     int soThuTu;
-}
+
+    // Số lớn hơn được ưu tiên; cùng mức thì số thứ tự nhỏ hơn đi trước.
+    bool operator<(const BenhNhan& khac) const {
+        if (doUuTien != khac.doUuTien) return doUuTien < khac.doUuTien;
+        return soThuTu > khac.soThuTu;
+    }
+};
 class HeThongBenhVien {
 private:
     BenhNhan* danhSach;
