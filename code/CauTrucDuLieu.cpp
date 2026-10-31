@@ -43,6 +43,31 @@ bool HangDoi::xemDau(BenhNhan &bn) {
     return true;
 }
 
+bool HangDoi::xemTaiViTri(int viTri, BenhNhan &bn) {
+    if (viTri < 0 || viTri >= soLuong) return false;
+    Nut* hienTai = head;
+    for (int i = 0; i < viTri; i++) hienTai = hienTai->next;
+    bn = hienTai->data;
+    return true;
+}
+
+bool HangDoi::layTheoMa(int ma, BenhNhan &bn) {
+    Nut* truoc = NULL;
+    Nut* hienTai = head;
+    while (hienTai != NULL && hienTai->data.maBenhNhan != ma) {
+        truoc = hienTai;
+        hienTai = hienTai->next;
+    }
+    if (hienTai == NULL) return false;
+    bn = hienTai->data;
+    if (truoc == NULL) head = hienTai->next;
+    else truoc->next = hienTai->next;
+    if (hienTai == tail) tail = truoc;
+    delete hienTai;
+    soLuong--;
+    return true;
+}
+
 bool HangDoi::laRong() { return soLuong == 0; }
 int HangDoi::kichThuoc() { return soLuong; }
 
@@ -91,6 +116,30 @@ bool HangDoiUuTien::lay(BenhNhan &bn) {
 bool HangDoiUuTien::xemDau(BenhNhan &bn) {
     if (laRong()) return false;
     bn = head->data;
+    return true;
+}
+
+bool HangDoiUuTien::xemTaiViTri(int viTri, BenhNhan &bn) {
+    if (viTri < 0 || viTri >= soLuong) return false;
+    Nut* hienTai = head;
+    for (int i = 0; i < viTri; i++) hienTai = hienTai->next;
+    bn = hienTai->data;
+    return true;
+}
+
+bool HangDoiUuTien::layTheoMa(int ma, BenhNhan &bn) {
+    Nut* truoc = NULL;
+    Nut* hienTai = head;
+    while (hienTai != NULL && hienTai->data.maBenhNhan != ma) {
+        truoc = hienTai;
+        hienTai = hienTai->next;
+    }
+    if (hienTai == NULL) return false;
+    bn = hienTai->data;
+    if (truoc == NULL) head = hienTai->next;
+    else truoc->next = hienTai->next;
+    delete hienTai;
+    soLuong--;
     return true;
 }
 
@@ -158,6 +207,14 @@ bool HangDoiHaiDau::layCuoi(BenhNhan &bn) {
     else tail->next = NULL;
     delete cu;
     soLuong--;
+    return true;
+}
+
+bool HangDoiHaiDau::xemTaiViTri(int viTri, BenhNhan &bn) {
+    if (viTri < 0 || viTri >= soLuong) return false;
+    Nut* hienTai = head;
+    for (int i = 0; i < viTri; i++) hienTai = hienTai->next;
+    bn = hienTai->data;
     return true;
 }
 

@@ -38,6 +38,13 @@ int main() {
     if (!kiemTra(thuong.them(taoBenhNhan(181, 1, 181)) &&
                  thuong.lay(bn) && bn.maBenhNhan == 181 && thuong.laRong(),
                  "HangDoi them lai sau khi rong")) return 1;
+    thuong.them(taoBenhNhan(1, 1, 1));
+    thuong.them(taoBenhNhan(2, 1, 2));
+    thuong.them(taoBenhNhan(3, 1, 3));
+    if (!kiemTra(thuong.layTheoMa(2, bn) && bn.maBenhNhan == 2 &&
+                 thuong.layTheoMa(3, bn) && bn.maBenhNhan == 3 &&
+                 thuong.layTheoMa(1, bn) && bn.maBenhNhan == 1 &&
+                 thuong.laRong(), "HangDoi xoa giua cuoi dau")) return 1;
 
     HangDoiUuTien uuTien;
     if (!kiemTra(!uuTien.lay(bn), "HangDoiUuTien rong")) return 1;
@@ -55,6 +62,13 @@ int main() {
         }
     }
     if (!kiemTra(uuTien.laRong(), "HangDoiUuTien lay het")) return 1;
+    uuTien.them(taoBenhNhan(1, 2, 1));
+    uuTien.them(taoBenhNhan(2, 5, 2));
+    uuTien.them(taoBenhNhan(3, 3, 3));
+    if (!kiemTra(uuTien.layTheoMa(3, bn) && bn.maBenhNhan == 3 &&
+                 uuTien.lay(bn) && bn.maBenhNhan == 2 &&
+                 uuTien.lay(bn) && bn.maBenhNhan == 1,
+                 "HangDoiUuTien xoa giua giu thu tu")) return 1;
 
     HangDoiHaiDau haiDau;
     if (!kiemTra(!haiDau.layDau(bn) && !haiDau.layCuoi(bn), "HangDoiHaiDau rong")) return 1;

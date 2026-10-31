@@ -1,37 +1,45 @@
 #ifndef HE_THONG_BENH_VIEN_H
 #define HE_THONG_BENH_VIEN_H
+
 #include <iostream>
 #include <string>
+#include "../include/CauTrucDuLieu.h"
 using namespace std;
-struct BenhNhan {
-    int maBenhNhan;
-    string ten;
-    string phongKham;
-    int doUuTien;
-    int soThuTu;
 
-    // Số lớn hơn được ưu tiên; cùng mức thì số thứ tự nhỏ hơn đi trước.
-    bool operator<(const BenhNhan& khac) const {
-        if (doUuTien != khac.doUuTien) return doUuTien < khac.doUuTien;
-        return soThuTu > khac.soThuTu;
-    }
+const int SO_PHONG_TOI_DA = 10;
+const int PHUT_MOI_LUOT = 15;
+
+struct PhongKham {
+    string ten;
+    HangDoi hangThuong;
+    HangDoiUuTien hangCapCuu;
 };
+
 class HeThongBenhVien {
 private:
-    BenhNhan* danhSach;
+    PhongKham phong[SO_PHONG_TOI_DA];
+    int soPhong;
     int sucChua;
     int soLuong;
     int sttTuDong;
-    void sapXepUuTien();
+    HangDoiHaiDau lichSuGoi;
+
+    int timPhong(string tenPhong);
+    int taoPhong(string tenPhong);
+    bool timBenhNhan(int ma, BenhNhan &bn, int &viTriPhong, bool &capCuu);
+
 public:
     HeThongBenhVien(int sc);
-    ~HeThongBenhVien();
-    void tiepNhanVaPhanLuong(int ma, string ten, string phong, int doUuTien);
-    void chuyenKhoaCapCuuUuTien(int maBN);
-    void goiSoTuDong();
+    bool tiepNhanVaPhanLuong(int ma, string ten, string tenPhong, int doUuTien);
+    bool chuyenKhoaCapCuuUuTien(int maBN);
+    bool goiSoTuDong(string tenPhong = "");
+    int thoiGianChoDuKien(int maBN);
     void uocTinhThoiGianCho(int maBN);
     void hienThiBangDienTu();
     void thongKePhongKham(string tenPhong);
+    void hienThiLichSuGoi();
     bool laRong();
+    int kichThuoc();
 };
+
 #endif

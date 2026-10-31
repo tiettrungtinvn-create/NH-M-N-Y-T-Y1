@@ -1,7 +1,7 @@
 #ifndef CAU_TRUC_DU_LIEU_H
 #define CAU_TRUC_DU_LIEU_H
 
-#include "../code/HeThongBenhVien.h"
+#include "BenhNhan.h"
 
 // shortcut: Mỗi hàng chứa tối đa 100 bệnh nhân; tăng giới hạn khi cần nhiều hơn.
 const int MAX_HANG_DOI = 100;
@@ -25,6 +25,8 @@ public:
     bool them(BenhNhan bn);
     bool lay(BenhNhan &bn);
     bool xemDau(BenhNhan &bn);
+    bool xemTaiViTri(int viTri, BenhNhan &bn);
+    bool layTheoMa(int ma, BenhNhan &bn);
     bool laRong();
     int kichThuoc();
 };
@@ -47,6 +49,8 @@ public:
     bool them(BenhNhan bn);
     bool lay(BenhNhan &bn);
     bool xemDau(BenhNhan &bn);
+    bool xemTaiViTri(int viTri, BenhNhan &bn);
+    bool layTheoMa(int ma, BenhNhan &bn);
     bool laRong();
     int kichThuoc();
 };
@@ -72,6 +76,7 @@ public:
     bool themCuoi(BenhNhan bn);
     bool layDau(BenhNhan &bn);
     bool layCuoi(BenhNhan &bn);
+    bool xemTaiViTri(int viTri, BenhNhan &bn);
     bool laRong();
     int kichThuoc();
 };
