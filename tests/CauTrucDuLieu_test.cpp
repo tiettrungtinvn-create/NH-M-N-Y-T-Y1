@@ -35,6 +35,9 @@ int main() {
         if (!kiemTra(thuong.lay(bn) && bn.maBenhNhan == i, "Queue sau quay vong")) return 1;
     }
     if (!kiemTra(thuong.laRong(), "Queue lay het")) return 1;
+    if (!kiemTra(thuong.them(taoBenhNhan(181, 1, 181)) &&
+                 thuong.lay(bn) && bn.maBenhNhan == 181 && thuong.laRong(),
+                 "Queue them lai sau khi rong")) return 1;
 
     PriorityQueue uuTien;
     if (!kiemTra(!uuTien.lay(bn), "Priority Queue rong")) return 1;

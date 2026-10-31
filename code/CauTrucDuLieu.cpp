@@ -1,29 +1,45 @@
 #include "CauTrucDuLieu.h"
 
 Queue::Queue() {
-    dau = 0;
+    head = NULL;
+    tail = NULL;
     soLuong = 0;
+}
+
+Queue::~Queue() {
+    while (head != NULL) {
+        Node* cu = head;
+        head = head->next;
+        delete cu;
+    }
 }
 
 bool Queue::them(BenhNhan bn) {
     if (soLuong == MAX_HANG_DOI) return false;
-    int cuoi = (dau + soLuong) % MAX_HANG_DOI;
-    danhSach[cuoi] = bn;
+    Node* moi = new Node;
+    moi->data = bn;
+    moi->next = NULL;
+    if (head == NULL) head = moi;
+    else tail->next = moi;
+    tail = moi;
     soLuong++;
     return true;
 }
 
 bool Queue::lay(BenhNhan &bn) {
     if (laRong()) return false;
-    bn = danhSach[dau];
-    dau = (dau + 1) % MAX_HANG_DOI;
+    Node* cu = head;
+    bn = cu->data;
+    head = head->next;
+    delete cu;
+    if (head == NULL) tail = NULL;
     soLuong--;
     return true;
 }
 
 bool Queue::xemDau(BenhNhan &bn) {
     if (laRong()) return false;
-    bn = danhSach[dau];
+    bn = head->data;
     return true;
 }
 
