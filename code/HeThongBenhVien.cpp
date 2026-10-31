@@ -48,3 +48,27 @@ void HeThongBenhVien::chuyenKhoaCapCuuUuTien(int maBN) {
     }
     cout << "[LOI] Khong tim thay ma benh nhan " << maBN << "\n";
 }
+void HeThongBenhVien::goiSoTuDong() {
+    if (laRong()) return;
+
+    BenhNhan bn = danhSach[0];
+    for (int i = 0; i < soLuong - 1; ++i) {
+        danhSach[i] = danhSach[i + 1];
+    }
+    soLuong--;
+
+    cout << "[LOA THONG BAO] Moi BN STT " << bn.soThuTu << " - " << bn.ten
+         << " vao " << bn.phongKham << "!\n";
+}
+
+void HeThongBenhVien::uocTinhThoiGianCho(int maBN) {
+    int thoiGianKhamTrungBinh = 15;
+    for (int i = 0; i < soLuong; ++i) {
+        if (danhSach[i].maBenhNhan == maBN) {
+            int thoiGianCho = i * thoiGianKhamTrungBinh;
+            cout << "[TRA CUU] BN " << danhSach[i].ten << " can cho khoang "
+                 << thoiGianCho << " phut.\n";
+            return;
+        }
+    }
+}
